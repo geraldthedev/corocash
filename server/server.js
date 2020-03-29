@@ -12,17 +12,10 @@ const axios = require('axios').default;
 app.prepare()
 .then(()=>{
     const server = express()
-    const getRates = async(req, res, next)=>{
-        await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        .then((res)=>{
-            console.log(res.data)
-        })
-        .catch(err=>console.log(err))
-        next()
-       }
-       server.use(getRates)
+    
+       
     server.get('*', (req, res, next)=>{
-        
+    
         return handle(req, res, next)
     })
     
