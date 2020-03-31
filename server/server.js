@@ -16,11 +16,9 @@ app.prepare()
     const server = express()
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json())
-       
+    server.use('./routes/getRates', getRates)   
     server.get('*', (req, res, next)=>{
-            getRates().then(data=>{
-                console.log(res.json(data))
-            })
+            console.log(getRates)
         return handle(req, res, next)
     })
     
