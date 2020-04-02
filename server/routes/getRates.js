@@ -4,15 +4,15 @@ const router = express.Router()
 
 
 router.get('/', (req, res, next)=>{
-    const getRates = async()=>{
-        await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-        .then(res=>console.log(res.data.bpi))
-        .catch(err=>console.log(err))
-    }
-    getRates()
-}
-
-)
+        const getRates = async()=>{
+                await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+               .then(res=> {return monies = res.data})
+               .catch(err=>console.log(err))
+                console.log(monies)
+            }
+           getRates()
+    
+})
 
 
 

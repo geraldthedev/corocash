@@ -17,9 +17,9 @@ app.prepare()
     
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json())
+    server.use('/routes/getrates', require('./routes/getRates'))
     server.get('*', (req, res, next)=>{
-        server.use('/routes/getrates', require('./routes/getRates'))
-
+        
         return handle(req, res, next)
     })
     
