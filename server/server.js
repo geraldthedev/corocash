@@ -11,11 +11,11 @@ const router = require('./routes/getRates')
 
 
 
-
 app.prepare()
 .then(()=>{
     const server = express()
-    
+
+
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json())
     server.use('/routes/getrates', router)
@@ -23,7 +23,6 @@ app.prepare()
         
         return handle(req, res, next)
     })
-    
     server.listen(3000, (err)=>{
         if (err) throw err
         console.log('ready on port 3000')

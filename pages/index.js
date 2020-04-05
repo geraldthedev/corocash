@@ -7,20 +7,34 @@ import axios from 'axios'
 export default class Home extends React.Component{
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+      rates:[]
+    }
   }
 
   async componentDidMount(){
 
    await axios.get('/routes/getrates')
-    .then(res=>console.log(res))
+    .then(res=>{this.setState({
+      rates: [res.data.bpi]
+    })
+    console.log(this.state.rates)
+  }
+    
+  
+    )
+    .catch(err=>console.log(err))
   }
   render(){
     return(
 
       <Layout>
         <div>
-        works
+        {this.state.rates.map((money, index)=>(
+          <div>
+            {money.USD.rate}
+          </div>
+        ))}
         </div>
         
 
