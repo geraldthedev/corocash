@@ -8,7 +8,8 @@ export default class Home extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      rates:[]
+      time:[],
+      USrates:[],  
     }
   }
 
@@ -16,25 +17,24 @@ export default class Home extends React.Component{
 
    await axios.get('/routes/getrates')
     .then(res=>{this.setState({
-      rates: [res.data.bpi]
+      time: res.data.time.updated,
+      USrates: res.data.bpi.USD.symbol + res.data.bpi.USD.rate
     })
     console.log(this.state.rates)
-  }
-    
-  
-    )
+   
+  })
     .catch(err=>console.log(err))
   }
+  
+
   render(){
     return(
 
       <Layout>
         <div>
-        {this.state.rates.map((money, index)=>(
-          <div>
-            {money.USD.rate}
-          </div>
-        ))}
+          {this.state.time}
+          {this.state.USrates}
+       
         </div>
         
 
