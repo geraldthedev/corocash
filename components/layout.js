@@ -3,7 +3,7 @@ import'../styles/styles.scss'
 
 
 const Layout=(props)=>(
-    <div>
+    <div className="container">
         {props.children}
     </div>
 )

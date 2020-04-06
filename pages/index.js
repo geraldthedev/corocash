@@ -8,6 +8,7 @@ export default class Home extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      allRate:[],
       time:[],
       USrates:[],  
     }
@@ -16,12 +17,24 @@ export default class Home extends React.Component{
   async componentDidMount(){
 
    await axios.get('/routes/getrates')
-    .then(res=>{this.setState({
+    .then(res=>{
+      const money = Object.values(res.data.bpi)
+      for(const dollar of money){
+        console.log(dollar)
+        const Bill =()=>{
+          
+        }
+      }
+      
+     /* this.setState({
+      allRate: res.data.bpi,
       time: res.data.time.updated,
-      USrates: res.data.bpi.USD.symbol + res.data.bpi.USD.rate
+      USrates: res.data.bpi.USD.rate
     })
-    console.log(this.state.rates)
-   
+    console.log(this.state.allRate)
+    console.log(Object.entries(this.state.allRate))
+    console.log(Object.values(this.state.allRate))
+  */
   })
     .catch(err=>console.log(err))
   }
@@ -33,7 +46,9 @@ export default class Home extends React.Component{
       <Layout>
         <div>
           {this.state.time}
-          {this.state.USrates}
+          <ul>
+         
+          </ul>
        
         </div>
         
