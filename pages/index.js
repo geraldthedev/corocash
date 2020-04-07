@@ -19,11 +19,12 @@ export default class Home extends React.Component{
    await axios.get('/routes/getrates')
     .then(res=>{
       const money = Object.values(res.data.bpi)
-      for(const dollar of money){
+    for(const dollar of money){
         console.log(dollar)
-        const Bill =()=>{
-          
-        }
+       this.setState({
+         allRate: [dollar]
+       })
+        
       }
       
      /* this.setState({
@@ -45,10 +46,20 @@ export default class Home extends React.Component{
 
       <Layout>
         <div>
-          {this.state.time}
-          <ul>
-         
-          </ul>
+          
+          
+          {this.state.allRate.map((cash, key)=>(
+            
+            <div>
+              <ul>
+          <li key={key}>{cash.rate}</li>
+                
+              </ul>
+              </div>
+            ))}
+             
+            
+        
        
         </div>
         
