@@ -7,6 +7,7 @@ const axios = require('axios').default;
 const bodyParser = require('body-parser')
 const router = require('./routes/getRates')
 //const getRates = require('./middleware/getRates')
+require('dotenv').config()
 
 
 
