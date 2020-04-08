@@ -8,6 +8,7 @@ export default class Home extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      keys:[],
       allRate:[],
       time:[],
       USrates:[],  
@@ -18,7 +19,7 @@ export default class Home extends React.Component{
 
    await axios.get('/routes/getrates')
     .then(res=>{ this.setState({
-      allRate: Object.entries(res.data.rates)
+      allRate: Object.values( res.data.rates)
     })
     console.log(this.state.allRate)
     console.log(this.state.allRate)
@@ -34,9 +35,9 @@ export default class Home extends React.Component{
       <Layout>
         <div>
           
-          {this.state.allRate.map(cash=>{
-            <li key={cash}>{cash}</li>
-          })}
+          {this.state.allRate.map((cash, key)=>
+            <li key={key}>{cash.key} {cash}</li>
+          )}
         
         </div>
         
