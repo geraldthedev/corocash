@@ -10,3 +10,7 @@ const rate = new Prices({
     value: Object.values(res.data.rates)
 })
 
+
+rate.save((err)=>{
+    if (err) return handleError(err)
+});
