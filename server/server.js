@@ -7,6 +7,7 @@ const express = require('express'),
         bodyParser = require('body-parser'),
         router = require('./routes/getRates'),
         mongoose = require('mongoose')
+        dbconnect = require('./middleware/dbconnect')
 
 //const getRates = require('./middleware/getRates')
 
@@ -22,8 +23,9 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json())
     server.use('/routes/getrates', router)
-    server.get('*', async (req, res, next)=>{
-        await mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.MONGO}@moneystream-vlhpe.mongodb.net/test?retryWrites=true&w=majority`,{
+    server.use('/middleware/dbconnect', dbconnect)
+
+    mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.MONGO}@moneystream-vlhpe.mongodb.net/test?retryWrites=true&w=majority`,{
             useNewUrlParser: true,
             useUnifiedTopology: true
         }
@@ -31,6 +33,7 @@ app.prepare()
         )
         .then(console.log("DB connected"))
         .catch(err=>console.log(err))
+    server.get('*', async (req, res, next)=>{
         
         return handle(req, res, next)
     })
