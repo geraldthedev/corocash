@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express'),
         next = require('next'),
         dev = process.env.NODE_ENV !== 'production',
+        port = process.env.PORT || 3000,
         app = next({dev}),
         handle = app.getRequestHandler(),
         bodyParser = require('body-parser'),
@@ -37,7 +38,7 @@ app.prepare()
         
         return handle(req, res, next)
     })
-    server.listen(3000, (err)=>{
+    server.listen(port, (err)=>{
         if (err) throw err
         console.log('ready on port 3000')
     })
