@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon watch-- ./server/server.js",
-    "build": "next build && node ./server/server.js",
-    "start": "node ./server/server.js"
+    "build": "next build",
+    "start": "next start"
   },
   "nodemonConfig": {
     "ignore": [
