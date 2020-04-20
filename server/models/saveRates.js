@@ -1,23 +1,30 @@
 const mongoose = require('mongoose')
 const express = require('express')
-const router = express.Router()
+const rateRoute = express.Router()
+const dbconnect = require('../middleware/dbconnect')
 
 const priceSchema = new mongoose.Schema({
     update:'integer',
     currency: 'string',
-    value: 'integer'
+    value: 'float'
 });
 const Prices = mongoose.model('Prices', priceSchema);
 
 
-const rate = new Prices({
-    update: res.data.timestamp,
-    currency: Object.keys(res.data.rates),
-    value: Object.values(res.data.rates)
+rateRoute.get('/',(req, res, next)=>{
+    const rate = new Prices({
+        update: res.data.timestamp,
+        currency: Object.keys(res.data.rates),
+        value: Object.values(res.data.rates)
+    })
+
+
+    dbconnect.Rates.rateData.insertOne(
+        rate.save((err)=>{
+            if (err) return handleError(err)
+        })
+    );
+    next()
 })
 
-
-
-rate.save((err)=>{
-    if (err) return handleError(err)
-});
+module.exports = rateRoute;

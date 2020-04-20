@@ -8,7 +8,8 @@ const express = require('express'),
         bodyParser = require('body-parser'),
         router = require('./routes/getRates'),
         mongoose = require('mongoose')
-        dbconnect = require('./middleware/dbconnect')
+        dbconnect = require('./middleware/dbconnect'),
+        rateRoute = require('./models/saveRates')
 
 //const getRates = require('./middleware/getRates')
 
@@ -25,6 +26,7 @@ app.prepare()
     server.use(bodyParser.json())
     server.use('/routes/getrates', router)
     server.use('/middleware/dbconnect', dbconnect)
+    server.use('/models/saveRates', rateRoute)
 
     mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.MONGO}@moneystream-vlhpe.mongodb.net/test?retryWrites=true&w=majority`,{
             useNewUrlParser: true,
