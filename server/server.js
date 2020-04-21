@@ -26,7 +26,7 @@ app.prepare()
     server.use(bodyParser.json())
     server.use('/routes/getrates', router)
     //server.use('/middleware/dbconnect', dbconnect)
-    server.use('/models/saveRates', rateRoute)
+    //server.use('/models/saveRates', rateRoute)
 
    /* mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.MONGO}@moneystream-vlhpe.mongodb.net/test?retryWrites=true&w=majority`,{
             useNewUrlParser: true,
