@@ -1,6 +1,7 @@
 const axios= require('axios').default
 const express = require('express')
 const router = express.Router()
+const prices = require('../models/saveRates')
 require('dotenv').config()
 
 
@@ -17,6 +18,14 @@ router.get('/', (req, res, next)=>{
     
 })
 
+router.post('/Rates',(req, res, next)=>{
+   const rate = new prices({
+      "update": res.data.timestamp,
+      "currency": Object.keys(res.data.rates),
+      "value": Object.values(res.data.rates)
+  })
+
+})
 
 
 module.exports = router

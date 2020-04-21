@@ -1,5 +1,6 @@
-const axios = require('axios')
+require('dotenv').config()
 const mongoose = require('mongoose')
+
 
 
 const dbconnect =async(req, res, next)=>{
@@ -9,8 +10,8 @@ const dbconnect =async(req, res, next)=>{
         }
         
         )
-        .then(console.log("DB connected"))
+        .then(console.log("DB connected 2"))
         .catch(err=>console.log(err))
-        next()
+    
 }
 module.exports = dbconnect
