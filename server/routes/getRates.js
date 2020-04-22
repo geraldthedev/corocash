@@ -18,13 +18,22 @@ router.get('/', (req, res, next)=>{
     
 })
 
-router.post('/Rates',(req, res, next)=>{
+router.post('/',(req, res, next)=>{
    const rate = new prices({
       "update": res.data.timestamp,
       "currency": Object.keys(res.data.rates),
       "value": Object.values(res.data.rates)
   })
+   rate.save()
+   .then(saved=>{
+      res.status(200).send("It worked")
 
+      console.log(saved)
+   })
+   .catch(err =>{
+      res.status().send(err)
+   })
+  next()
 })
 
 
